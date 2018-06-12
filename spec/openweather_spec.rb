@@ -2,7 +2,6 @@ require 'spec_helper'
 require_relative '../lib/generator/random_id_generator'
 require_relative '../lib/generator/json_city_generator'
 
-
 describe OpenWeather do
 
   context 'requesting a random id from Yaml file' do

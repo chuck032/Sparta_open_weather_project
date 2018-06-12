@@ -19,8 +19,4 @@ class RandomIdGenerator
     @city_ids.sample.digits.count
   end
 
-
 end
-
-# check = RandomIdGenerator.new
-# p check.city_ids.class

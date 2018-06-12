@@ -6,8 +6,6 @@ require_relative 'random_id_generator'
 class JsonCityGenerator
   include HTTParty
 
-  attr_accessor :json_array
-
   def json_array
     JSON.parse(File.read('city.list.json'))
   end
@@ -40,6 +38,3 @@ class JsonCityGenerator
     find_json_hash(id)['coord']['lon'].round(2)
   end
 end
-
-# p check = JsonCityGenerator.new.get_json_lat(596826)
-# p check

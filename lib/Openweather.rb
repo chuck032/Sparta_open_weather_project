@@ -11,6 +11,3 @@ class OpenWeather
   end
 
 end
-
-# test = OpenWeather.new
-# p test.single_city.get_single_city(10722858)

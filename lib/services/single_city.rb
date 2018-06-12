@@ -1,7 +1,6 @@
 require 'httparty'
 require 'json'
 
-
 class SingleCity
   include HTTParty
 
@@ -59,11 +58,4 @@ class SingleCity
     get_id.digits.count
   end
 
-
-
-
-
 end
-
-# test = SingleCity.new
-# p test.get_single_city(10722858)
