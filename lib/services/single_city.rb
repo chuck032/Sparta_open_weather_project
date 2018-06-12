@@ -11,12 +11,16 @@ class SingleCity
     @single_city_data = JSON.parse(self.class.get("/data/2.5/weather?id=#{id}&APPID=2c86cf1a3968fd03072f7a0ebaaa384e").body)
   end
 
+  def get_coord
+    @single_city_data['coord']
+  end
+
   def get_longitude
-    @single_city_data['coord']['lon']
+    get_coord['lon']
   end
 
   def get_latitude
-    @single_city_data['coord']['lat']
+    get_coord['lat']
   end
 
   def get_weather

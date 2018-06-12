@@ -40,6 +40,14 @@ describe OpenWeather do
       expect(@single_weather.get_weather).to be_kind_of Array
     end
 
+    it 'Should return longitude Integer or float' do
+      expect(@single_weather.get_longitude).to be_a(Integer).or be_a(Float)
+    end
+
+    it 'Should return latitude Integer or float' do
+      expect(@single_weather.get_latitude).to be_a(Integer).or be_a(Float)
+    end
+
     it 'Main weather should be String' do
       expect(@single_weather.get_weather_main).to be_kind_of String
     end
@@ -72,23 +80,31 @@ describe OpenWeather do
       @single_weather = OpenWeather.new.single_city
       @rand_id = @city_ids.get_random_id
       @single_weather.get_single_city(@rand_id)
-      @json_hash = JsonCityGenerator.new.json_array(@rand_id)
+      @json_hash = JsonCityGenerator.new
     end
 
     it "Should return a hash" do
-      expect(@json_hash).to be_kind_of Hash
+      expect(@json_hash.find_json_hash(@rand_id)).to be_kind_of Hash
     end
 
     it 'random id should match id of json hash and id of API' do
-      expect(@json_hash['id']).to eq(@rand_id).and eq(@single_weather.get_id)
+      expect(@json_hash.get_json_hash(@rand_id)).to eq(@rand_id).and eq(@single_weather.get_id)
     end
 
     it 'Should have matching country names' do
-      expect(@json_hash['country']).to eq(@single_weather.get_country)
+      expect(@json_hash.get_json_country(@rand_id)).to eq(@single_weather.get_country)
     end
 
-    it 'Should have matching country names' do
-      # expect(@json_hash['country']).to eq(@single_weather.get_country)
+    it 'Should have matching city names' do
+      expect(@json_hash.get_json_city(@rand_id)).to eq(@single_weather.get_city)
+    end
+
+    it 'Should have matching latitudes' do
+      expect(@json_hash.get_json_lat(@rand_id)).to eq(@single_weather.get_latitude)
+    end
+
+    it 'Should have matching longitudes' do
+      expect(@json_hash.get_json_lon(@rand_id)).to eq(@single_weather.get_longitude)
     end
 
 
