@@ -48,7 +48,11 @@ class SingleCity
   end
 
   def get_id
-    @single_city_data["id"].digits.count
+    @single_city_data["id"]
+  end
+
+  def get_id_length
+    get_id.digits.count
   end
 
 

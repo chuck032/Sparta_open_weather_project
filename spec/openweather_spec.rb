@@ -1,5 +1,7 @@
 require 'spec_helper'
 require_relative '../lib/generator/random_id_generator'
+require_relative '../lib/generator/json_city_generator'
+
 
 describe OpenWeather do
 
@@ -31,15 +33,7 @@ describe OpenWeather do
     before(:all) do
       @city_ids = RandomIdGenerator.new
       @single_weather = OpenWeather.new.single_city
-      p @single_weather.get_single_city(@city_ids.get_random_id)
-    end
-
-    it 'Should return longitude as a float' do
-      expect(@single_weather.get_longitude).to be_kind_of Float
-    end
-
-    it 'Should return latitude as a float' do
-      expect(@single_weather.get_latitude).to be_kind_of Float
+      @single_weather.get_single_city(@city_ids.get_random_id)
     end
 
     it 'Should return and Array when looking for weather' do
@@ -67,14 +61,37 @@ describe OpenWeather do
     end
 
     it 'Should have an ID between 5 and 8' do
-      expect(@single_weather.get_id).to be_between(5,8)
+      expect(@single_weather.get_id_length).to be_between(5,8)
+    end
+
+  end
+
+  context 'linking random id to json object and Open Weather API' do
+    before(:all) do
+      @city_ids = RandomIdGenerator.new
+      @single_weather = OpenWeather.new.single_city
+      @rand_id = @city_ids.get_random_id
+      @single_weather.get_single_city(@rand_id)
+      @json_hash = JsonCityGenerator.new.json_array(@rand_id)
+    end
+
+    it "Should return a hash" do
+      expect(@json_hash).to be_kind_of Hash
+    end
+
+    it 'random id should match id of json hash and id of API' do
+      expect(@json_hash['id']).to eq(@rand_id).and eq(@single_weather.get_id)
+    end
+
+    it 'Should have matching country names' do
+      expect(@json_hash['country']).to eq(@single_weather.get_country)
+    end
+
+    it 'Should have matching country names' do
+      # expect(@json_hash['country']).to eq(@single_weather.get_country)
     end
 
 
 
-
-
-
   end
-
 end

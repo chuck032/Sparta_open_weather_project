@@ -1,28 +1,23 @@
 require 'yaml'
 require 'httparty'
 require 'json'
+require_relative 'random_id_generator'
 
 class JsonCityGenerator
   include HTTParty
 
-  def initialize
-    @json_hash = JSON.parse(File.read('city.list.json'))
-  end
+  attr_accessor :json_array
 
-
-  def get_json_hash
-    json_array = @json_hash
-  end
-
-  def get_json_id
-    json_array.each do |x|
-      p json_array[x]['id']
+  def json_array(id)
+    json_arr = JSON.parse(File.read('city.list.json'))
+    json_arr.each do |x|
+      if x['id'] == id
+        return x
+      end
     end
   end
 
-
-
 end
 
-check = JsonCityGenerator.new
-p check.get_json_hash.get_json_id
+# check = JsonCityGenerator.new.json_array(710548)
+# p check.get_id
