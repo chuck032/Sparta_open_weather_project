@@ -1,4 +1,5 @@
 require_relative 'services/single_city'
+require_relative 'generator/random_id_generator'
 
 class OpenWeather
   include HTTParty

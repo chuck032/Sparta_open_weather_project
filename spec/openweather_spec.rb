@@ -1,15 +1,23 @@
 require 'spec_helper'
 require_relative '../lib/generator/random_id_generator'
 
-describe Openweather do
+describe OpenWeather do
 
-  context 'generating random id from yaml file'
+  context 'requesting weather information on a single ID'
 
     before(:all) do
-      @city_id = RandomIdGenerator.new.get_random_id
+      # @city_id = RandomIdGenerator.new
+      @single_weather = OpenWeather.new.single_city
+      @single_weather.get_single_city(10722858)
     end
 
-    it 'id should exist within yaml file' do
-      p @city_id
+    it 'Should return longitude as a float' do
+      expect(@single_weather.get_longitude).to be_kind_of Float
     end
+
+    it 'Should return latitude as a float' do
+      expect(@single_weather.get_latitude).to be_kind_of Float
+    end
+
+
 end

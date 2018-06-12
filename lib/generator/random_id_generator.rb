@@ -5,8 +5,6 @@ require 'json'
 class RandomIdGenerator
   include HTTParty
 
-  base_uri 'http://api.openweathermap.org'
-
   def initialize
     @city_id = YAML.load_file('../../city_id.yml')
   end
@@ -18,5 +16,5 @@ class RandomIdGenerator
 
 end
 
-test = RandomIdGenerator.new
-p test.get_random_id
+# test = RandomIdGenerator.new
+# p test.get_random_id
