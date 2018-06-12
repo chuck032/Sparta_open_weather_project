@@ -26,18 +26,15 @@ describe OpenWeather do
     end
   end
 
-
-
   context 'requesting weather information on a single ID' do
 
     before(:all) do
       @city_ids = RandomIdGenerator.new
       @single_weather = OpenWeather.new.single_city
-      @single_weather.get_single_city(10722858)
+      p @single_weather.get_single_city(@city_ids.get_random_id)
     end
 
     it 'Should return longitude as a float' do
-      p @single_weather.get_single_city(10722858)
       expect(@single_weather.get_longitude).to be_kind_of Float
     end
 
@@ -61,12 +58,17 @@ describe OpenWeather do
       expect(@single_weather.get_temperature).to be_kind_of Float
     end
 
-    it 'Should return a integer pressure' do
-      expect(@single_weather.get_pressure).to be_kind_of Integer
+    it 'Should return country as string' do
+      expect(@single_weather.get_country).to be_kind_of String
     end
 
+    it 'Should return name of city as string' do
+      expect(@single_weather.get_city).to be_kind_of String
+    end
 
-
+    it 'Should have an ID between 5 and 8' do
+      expect(@single_weather.get_id).to be_between(5,8)
+    end
 
 
 

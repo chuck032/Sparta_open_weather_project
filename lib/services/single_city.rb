@@ -8,7 +8,7 @@ class SingleCity
   base_uri 'http://api.openweathermap.org'
 
   def get_single_city(id)
-    @single_city_data = JSON.parse(self.class.get("/data/2.5/weather?id=524901&APPID=2c86cf1a3968fd03072f7a0ebaaa384e").body)
+    @single_city_data = JSON.parse(self.class.get("/data/2.5/weather?id=#{id}&APPID=2c86cf1a3968fd03072f7a0ebaaa384e").body)
   end
 
   def get_longitude
@@ -39,6 +39,17 @@ class SingleCity
     @single_city_data["main"]["pressure"]
   end
 
+  def get_country
+    @single_city_data["sys"]["country"]
+  end
+
+  def get_city
+    @single_city_data["name"]
+  end
+
+  def get_id
+    @single_city_data["id"].digits.count
+  end
 
 
 
