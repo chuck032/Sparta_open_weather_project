@@ -107,7 +107,5 @@ describe OpenWeather do
       expect(@json_hash.get_json_lon(@rand_id)).to eq(@single_weather.get_longitude)
     end
 
-
-
   end
 end
