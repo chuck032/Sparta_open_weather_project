@@ -1,1 +1,1 @@
-# Sparta_open_weather_project
+# Sparta_openweather_som
