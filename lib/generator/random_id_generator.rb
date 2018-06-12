@@ -6,7 +6,7 @@ class RandomIdGenerator
   include HTTParty
 
   def initialize
-    @city_id = YAML.load_file('../../city_id.yml')
+    @city_id = YAML.load_file('/../../city_id.yml')
   end
 
   def get_random_id

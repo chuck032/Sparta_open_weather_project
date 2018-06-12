@@ -18,6 +18,32 @@ class SingleCity
   def get_latitude
     @single_city_data['coord']['lat']
   end
+
+  def get_weather
+    @single_city_data['weather']
+  end
+
+  def get_weather_main
+    get_weather[0]["main"]
+  end
+
+  def get_weather_description
+    get_weather[0]["description"]
+  end
+
+  def get_temperature
+    @single_city_data["main"]["temp"]
+  end
+
+  def get_pressure
+    @single_city_data["main"]["pressure"]
+  end
+
+
+
+
+
+
 end
 
 # test = SingleCity.new
