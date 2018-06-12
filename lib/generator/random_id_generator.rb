@@ -5,16 +5,22 @@ require 'json'
 class RandomIdGenerator
   include HTTParty
 
+  attr_reader :city_ids
+
   def initialize
-    @city_id = YAML.load_file('/../../city_id.yml')
+    @city_ids = YAML.load_file('city_id.yml')
   end
 
   def get_random_id
-    @city_id.sample
+    @city_ids.sample
+  end
+
+  def get_random_id_length
+    @city_ids.sample.digits.count
   end
 
 
 end
 
-# test = RandomIdGenerator.new
-# p test.get_random_id
+# check = RandomIdGenerator.new
+# p check.city_ids.class
